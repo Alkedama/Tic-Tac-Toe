@@ -1,5 +1,21 @@
 $background-color: #656bb8;
+$board-color: #f1f1f1;
 
 html{
     background-color: $background-color;
+}
+
+.board{
+    background-color: $board-color;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    // border: #162720 solid 5px;
+}
+
+.cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: #19bd79 solid 1px;
 }
