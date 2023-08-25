@@ -5,22 +5,19 @@ document.querySelector("#app").innerHTML = `
   <div>
     <h1>Tic Tac Toe</h1>
     <div class="board">
-    <div class="cell">X</div>
-    <div class="cell">O</div>
-    <div class="cell">X</div>
-    <div class="cell">O</div>
-    <div class="cell">X</div>
-    <div class="cell">O</div>
-    <div class="cell">X</div>
-    <div class="cell">O</div>
-    <div class="cell">X</div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
     </div>
     <div id="target"></div>
   </div>
 `;
-
-
-
 
 // Initiates Game Board
 const gameBoard = (() => {
@@ -37,6 +34,37 @@ const gameBoard = (() => {
       console.log(board[i]);
     }
   }
+  
+});
+
+// Represents a cell in the board
+const Cell = () => {
+  let value = "X";
+  console.log("initiates Cell");
+  return { value }
+};
+
+// Declare Players
+const player = (name) => {
+  console.log("initiates player");
+
+  const players = [{
+    name: name,
+    token: "X"
+  },
+  {
+    name: name,
+    token: "O"
+  }]
+
+return { players: players }
+};
+
+// Display in DOM
+const displayController = (() => {
+  console.log("initiates displayController");
+
+  const board = gameBoard();
 
   const cell = document.querySelectorAll(".cell");
   let i = 0;
@@ -51,23 +79,10 @@ const gameBoard = (() => {
     cellButton.textContent = i;
     i++;
   });
-
-  
-});
-
-// Represents a cell in the board
-const Cell = () => {
-  let value = "X";
-  console.log("initiates Cell");
-  return { value }
-};
-
-gameBoard();
-
-const displayController = (() => {
-  console.log("initiates displayController");
 })();
 
-const player = () => {
-  console.log("initiates player");
-};
+const playerOne = player("Player One");
+const playerTwo = player("Player Two");
+
+console.log(playerOne.players[0].name, playerOne.players[0].token);
+console.log(playerTwo.players[1].name, playerTwo.players[1].token);
