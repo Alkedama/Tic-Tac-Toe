@@ -76,7 +76,7 @@ const displayController = (() => {
 
   const newBoard = gameBoard();
 
-  console.log(newBoard.board);
+  // console.log(newBoard.board);
   // console.log(newBoard.board[0]);
   // console.log(newBoard.board[0][0].value);
 
@@ -97,22 +97,21 @@ const displayController = (() => {
     const updateBoard = (() => {
       console.log("updateBoard");
 
-      // newBoard.board[0].forEach((element) => {
-      //   console.log(element);
-      // });
-
-      // console.log(newBoard.board[0][i]);
-      if (newBoard.board[j][i] === undefined) {
-        console.log("undefined");
-        // j++;
-        // buttons.textContent = newBoard.board[j][i];
+      if (newBoard.board[i][j] !== undefined) {
+        console.log(newBoard.board[i][j]);
+        buttons.textContent = newBoard.board[i][j];
+        j++;
       } else {
-        buttons.textContent = newBoard.board[j][i];
+        i++;
+        j = 0;
+        console.log(newBoard.board[i][j]);
+        buttons.textContent = newBoard.board[i][j];
+        j++;
       }
-      // cellButton.textContent = "O";
-    })();
 
-    i++;
+
+      // MAP
+    })();
   });
 })();
 
