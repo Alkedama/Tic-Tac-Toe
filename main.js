@@ -5,22 +5,22 @@ document.querySelector("#app").innerHTML = `
   <div>
     <h1>Tic Tac Toe</h1>
     <div class="board">
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
+    <button class="cell"></button>
+    <button class="cell"></button>
+    <button class="cell"></button>
+    <button class="cell"></button>
+    <button class="cell"></button>
+    <button class="cell"></button>
+    <button class="cell"></button>
+    <button class="cell"></button>
+    <button class="cell"></button>
     </div>
     <div id="target"></div>
   </div>
 `;
 
 // Initiates Game Board
-const gameBoard = (() => {
+const gameBoard = () => {
   console.log("initiates gameBoard");
   const rows = 3;
   const cols = 3;
@@ -30,53 +30,88 @@ const gameBoard = (() => {
   for (let i = 0; i < rows; i++) {
     board[i] = [];
     for (let j = 0; j < cols; j++) {
-      board[i].push(Cell());
-      console.log(board[i]);
+      // board[i].push(cell());
+      if (j % 2 === 0) {
+        board[i].push("X");
+      } else {
+        board[i].push("O");
+      }
+      // console.log(board[i]);
     }
   }
-  
-});
+
+  return {
+    board,
+  };
+};
 
 // Represents a cell in the board
-const Cell = () => {
+const cell = () => {
   let value = "X";
   console.log("initiates Cell");
-  return { value }
+  return { value };
 };
 
 // Declare Players
 const player = (name) => {
   console.log("initiates player");
 
-  const players = [{
-    name: name,
-    token: "X"
-  },
-  {
-    name: name,
-    token: "O"
-  }]
+  const players = [
+    {
+      name: name,
+      token: "X",
+    },
+    {
+      name: name,
+      token: "O",
+    },
+  ];
 
-return { players: players }
+  return { players: players };
 };
 
 // Display in DOM
 const displayController = (() => {
   console.log("initiates displayController");
 
-  const board = gameBoard();
+  const newBoard = gameBoard();
+
+  console.log(newBoard.board);
+  // console.log(newBoard.board[0]);
+  // console.log(newBoard.board[0][0].value);
 
   const cell = document.querySelectorAll(".cell");
   let i = 0;
-  cell.forEach(buttons => {
+  let j = 0;
+  cell.forEach((buttons) => {
     const cellButton = document.createElement("button");
-    buttons.appendChild(cellButton);
 
-    cellButton.addEventListener("click", () => {
+    // Updates when button is clicked
+    buttons.addEventListener("click", () => {
       console.log("clicked");
-      cellButton.textContent = "X";
-    })
-    cellButton.textContent = i;
+      buttons.textContent = "O";
+    });
+    buttons.textContent = i;
+
+    // Updates Board
+    const updateBoard = (() => {
+      console.log("updateBoard");
+
+      // newBoard.board[0].forEach((element) => {
+      //   console.log(element);
+      // });
+
+      // console.log(newBoard.board[0][i]);
+      if (newBoard.board[j][i] === undefined) {
+        console.log("undefined");
+        // j++;
+        // buttons.textContent = newBoard.board[j][i];
+      } else {
+        buttons.textContent = newBoard.board[j][i];
+      }
+      // cellButton.textContent = "O";
+    })();
+
     i++;
   });
 })();
