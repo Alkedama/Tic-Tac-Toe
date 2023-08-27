@@ -5,15 +5,6 @@ document.querySelector("#app").innerHTML = `
   <div>
     <h1>Tic Tac Toe</h1>
     <div class="board">
-    <button class="cell"></button>
-    <button class="cell"></button>
-    <button class="cell"></button>
-    <button class="cell"></button>
-    <button class="cell"></button>
-    <button class="cell"></button>
-    <button class="cell"></button>
-    <button class="cell"></button>
-    <button class="cell"></button>
     </div>
     <div id="target"></div>
   </div>
@@ -25,17 +16,30 @@ const gameBoard = () => {
   const rows = 3;
   const cols = 3;
   const board = [];
+  let cellDOM;
+  let cellNumber = 0;
+
+  const boardUI = document.querySelector(".board");
 
   // Adds 2d array
+  // i represents rows
+  // j represents columns
   for (let i = 0; i < rows; i++) {
     board[i] = [];
-    for (let j = 0; j < cols; j++) {
+    for (let j = 0; j < cols; j++) {      
+      cellDOM = document.createElement("button");
+      cellDOM.classList.add("cell");
+      cellDOM.id = cellNumber;
+      cellNumber++;
+
+      boardUI.appendChild(cellDOM);
+
       // board[i].push(cell());
-      if (j % 2 === 0) {
-        board[i].push("X");
-      } else {
-        board[i].push("O");
-      }
+      // if (j % 2 === 0) {
+      //   board[i].push("X");
+      // } else {
+      //   board[i].push("O");
+      // }
       // console.log(board[i]);
     }
   }
@@ -47,7 +51,7 @@ const gameBoard = () => {
 
 // Represents a cell in the board
 const cell = () => {
-  let value = "X";
+  let value;
   console.log("initiates Cell");
   return { value };
 };
@@ -74,9 +78,21 @@ const player = (name) => {
 const displayController = (() => {
   console.log("initiates displayController");
 
+const newMap = new Map();
+
+newMap.set("a", "1");
+
+console.log(newMap);
+
   const newBoard = gameBoard();
 
-  // console.log(newBoard.board);
+  // newBoard.board[0].push("X", "o");
+  const map1 = newBoard.board.map((x) => x);
+
+  console.log(map1);
+
+  // console.log(newBoard);
+  console.log(newBoard.board); 
   // console.log(newBoard.board[0]);
   // console.log(newBoard.board[0][0].value);
 
@@ -84,31 +100,30 @@ const displayController = (() => {
   let i = 0;
   let j = 0;
   cell.forEach((buttons) => {
-    const cellButton = document.createElement("button");
 
     // Updates when button is clicked
     buttons.addEventListener("click", () => {
       console.log("clicked");
+      // console.log(newBoard.board)
       buttons.textContent = "O";
     });
-    buttons.textContent = i;
+    buttons.textContent = "";
 
     // Updates Board
     const updateBoard = (() => {
       console.log("updateBoard");
 
-      if (newBoard.board[i][j] !== undefined) {
-        console.log(newBoard.board[i][j]);
-        buttons.textContent = newBoard.board[i][j];
-        j++;
-      } else {
-        i++;
-        j = 0;
-        console.log(newBoard.board[i][j]);
-        buttons.textContent = newBoard.board[i][j];
-        j++;
-      }
-
+      // if (newBoard.board[i][j] !== undefined) {
+      //   // console.log(newBoard.board[i][j]);
+      //   // buttons.textContent = newBoard.board[i][j];
+      //   j++;
+      // } else {
+      //   i++;
+      //   j = 0;
+      //   // console.log(newBoard.board[i][j]);
+      //   // buttons.textContent = newBoard.board[i][j];
+      //   j++;
+      // }
 
       // MAP
     })();
